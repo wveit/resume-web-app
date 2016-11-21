@@ -18,6 +18,24 @@ app.get('/resume', function(req, res){
 
 });
 
+app.post('/addEdu', function(req, res){
+	db.resume.insert(req.body, function(err, doc){
+		res.json(doc);
+	});
+});
+
+app.post('/addSkill', function(req, res){
+	db.resume.insert(req.body, function(err, doc){
+		res.json(doc);
+	});
+});
+
+app.post('/addProject', function(req, res){
+	db.resume.insert(req.body, function(err, doc){
+		res.json(doc);
+	});
+});
+
 /*
 app.get('/contactlist', function(req, res){
 	console.log('I received a GET request');
