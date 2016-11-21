@@ -2,13 +2,8 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http){
 
-	console.log("Hello World from controller");
-
 	var refresh = function(){
-		console.log("calling refresh function");
-		$http.get('/resume').success(function(response){
-			//console.log("I got the data I requested");
-			
+		$http.get('/getResume').success(function(response){			
 			$scope.edulist = [];
 			$scope.skilllist = [];
 			$scope.projectlist = [];
@@ -29,7 +24,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http){
 	
 	$scope.addEdu = function(){
 		$scope.edu.type = 'edu';
-		$http.post('/addEdu', $scope.edu).then(function(response){
+		$http.post('/addItem', $scope.edu).then(function(response){
 			refresh();
 			$scope.edu = {};
 		});
@@ -37,7 +32,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http){
 	
 	$scope.addSkill = function(){
 		$scope.skill.type = 'skill';
-		$http.post('/addSkill', $scope.skill).then(function(response){
+		$http.post('/addItem', $scope.skill).then(function(response){
 			refresh();
 			$scope.skill = {};
 		});
@@ -45,9 +40,15 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http){
 	
 	$scope.addProject = function(){
 		$scope.project.type = 'project';
-		$http.post('/addProject', $scope.project).then(function(response){
+		$http.post('/addItem', $scope.project).then(function(response){
 			refresh();
 			$scope.project = {};
+		});
+	}
+	
+	$scope.remove = function(type, index){
+		$http.post('/remove', {id:index}).then(function(response){
+			refresh();
 		});
 	}
 

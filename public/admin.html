@@ -16,7 +16,7 @@
 	
 		<h1>Admin Page</h1>
 		
-		<h2>Eductaion</h2>
+		<h2>Education</h2>
 		<input type="text" id="school" placeholder="school" ng-model="edu.school">
 		<input type="text" id="degree" placeholder="degree" ng-model="edu.degree">
 		<input type="text" id="last_year" placeholder="last year" ng-model="edu.last_year">
@@ -34,6 +34,7 @@
 					<td>{{edu.school}}</td>
 					<td>{{edu.degree}}</td>
 					<td>{{edu.last_year}}</td>
+					<td><input type="button" value="Delete" ng-click="remove('edu', edu._id)"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -52,6 +53,7 @@
 			<tbody>
 				<tr ng-repeat="skill in skilllist">
 					<td>{{skill.skill}}</td>
+					<td><input type="button" value="Delete" ng-click="remove('skill', skill._id)"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -71,6 +73,7 @@
 				<tr ng-repeat="project in projectlist">
 					<td>{{project.title}}</td>
 					<td>{{project.description}}</td>
+					<td><input type="button" value="Delete" ng-click="remove('project', project._id)"></td>
 				</tr>
 			</tbody>
 		</table>
