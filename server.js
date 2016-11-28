@@ -20,9 +20,36 @@ app.post('/addItem', function(req, res){
 });
 
 app.post('/remove', function(req, res){
-	db.resume.remove({_id:mongojs.ObjectId(req.body.id)}, function(err, doc){
+	db.resume.remove({_id:mongojs.ObjectId(req.body._id)}, function(err, doc){
 		res.json(doc);
 	});
+});
+
+app.post('/edit', function(req, res){
+	
+	var object = {type:req.body.type};
+	if(req.body.type == 'edu'){
+		object.school = req.body.school;
+		object.degree = req.body.degree;
+		object.last_year = req.body.last_year;
+	}
+	else if(req.body.type == 'skill'){
+		object.skill = req.body.skill;
+	}
+	else if(req.body.type == 'project'){
+		object.title = req.body.title;
+		object.description = req.body.description;
+	}
+	
+	db.resume.update(
+		{_id:mongojs.ObjectId(req.body._id)}, 
+		object, 
+		function(err, count, status){
+			res.json(count);
+		}
+	);
+	
+	
 });
 
 

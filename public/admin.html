@@ -16,11 +16,15 @@
 	
 		<h1>Admin Page</h1>
 		
+		
+		
 		<h2>Education</h2>
-		<input type="text" id="school" placeholder="school" ng-model="edu.school">
-		<input type="text" id="degree" placeholder="degree" ng-model="edu.degree">
-		<input type="text" id="last_year" placeholder="last year" ng-model="edu.last_year">
-		<input type="button" value="Add" ng-click="addEdu()">
+		<input type="text" id="school" placeholder="school" ng-model="inputEdu.school">
+		<input type="text" id="degree" placeholder="degree" ng-model="inputEdu.degree">
+		<input type="text" id="last_year" placeholder="last year" ng-model="inputEdu.last_year">
+		<input type="button" id="edu_add" value="Add Edu" ng-click="addEdu()">
+		<input type="button" id="edu_save" value="Save Changes" ng-click="saveChange(inputEdu)" hidden>
+		<input type="button" id="edu_cancel" value="Cancel Edit" ng-click="cancelEdit(inputEdu)" hidden>
 		<table class="table">
 			<thead>
 				<tr>
@@ -34,7 +38,11 @@
 					<td>{{edu.school}}</td>
 					<td>{{edu.degree}}</td>
 					<td>{{edu.last_year}}</td>
-					<td><input type="button" value="Delete" ng-click="remove('edu', edu._id)"></td>
+					<td>
+						<input type="button" value="Delete" ng-click="remove('edu', edu._id)">
+						<input type="button" value="Edit" ng-click="edit(edu)">
+						{{ (edu._id == inputEdu._id ? "editing" : "") }}
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -42,8 +50,10 @@
 		
 		
 		<h2>Skills</h2>
-		<input type="text" id="skill" placeholder="skill" ng-model="skill.skill">
-		<input type="button" value="Add" ng-click="addSkill()">
+		<input type="text" id="skill" placeholder="skill" ng-model="inputSkill.skill">
+		<input type="button" id="skill_add" value="Add Skill" ng-click="addSkill()">
+		<input type="button" id="skill_save" value="Save Changes" ng-click="saveChange(inputSkill)" hidden>
+		<input type="button" id="skill_cancel" value="Cancel Edit" ng-click="cancelEdit(inputSkill)" hidden>
 		<table class="table">
 			<thead>
 				<tr>
@@ -53,15 +63,23 @@
 			<tbody>
 				<tr ng-repeat="skill in skilllist">
 					<td>{{skill.skill}}</td>
-					<td><input type="button" value="Delete" ng-click="remove('skill', skill._id)"></td>
+					<td>
+						<input type="button" value="Delete" ng-click="remove('skill', skill._id)">
+						<input type="button" value="Edit" ng-click="edit(skill)">
+						{{ (skill._id == inputSkill._id ? "editing" : "") }}
+					</td>
 				</tr>
 			</tbody>
 		</table>
 		
+		
+		
 		<h2>Projects</h2>
-		<input type="text" id="title" placeholder="title" ng-model="project.title">
-		<input type="text" id="description" placeholder="description" ng-model="project.description">
-		<input type="button" value="Add" ng-click="addProject()">
+		<input type="text" id="title" placeholder="title" ng-model="inputProject.title">
+		<input type="text" id="description" placeholder="description" ng-model="inputProject.description">
+		<input type="button" id="project_add" value="Add Project" ng-click="addProject()">
+		<input type="button" id="project_save" value="Save Changes" ng-click="saveChange(inputProject)" hidden>
+		<input type="button" id="project_cancel" value="Cancel Edit" ng-click="cancelEdit(inputProject)" hidden>
 		<table class="table">
 			<thead>
 				<tr>
@@ -73,7 +91,11 @@
 				<tr ng-repeat="project in projectlist">
 					<td>{{project.title}}</td>
 					<td>{{project.description}}</td>
-					<td><input type="button" value="Delete" ng-click="remove('project', project._id)"></td>
+					<td>
+						<input type="button" value="Delete" ng-click="remove('project', project._id)">
+						<input type="button" value="Edit" ng-click="edit(project)">
+						{{ (project._id == inputProject._id ? "editing" : "") }}
+					</td>
 				</tr>
 			</tbody>
 		</table>
